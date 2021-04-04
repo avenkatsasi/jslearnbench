@@ -27,7 +27,8 @@ let sampleObj = {
 console.log(sampleObj.fullName())
 sampleObj.identificationInfo.summary()
 
-// Creating an Object with factory function
+// #1: Creating an Object with factory function
+// #2: since function is an object, an object called "personObject" will also be created
 function personObject(name, age, gender) {
     return {
         name: name,
@@ -42,7 +43,12 @@ function personObject(name, age, gender) {
 let person1 = personObject('Peter', 45, 'Male')
 console.log(person1.summary())
 
-// Creating an object with Constructor function
+// #1: Creating an object with Constructor function
+// #2: If "this" was not used for propA and other properties, 
+// the properties will be added to global object which 
+// will be "window" object in a html page.
+// **: Here ObjectA will not be an object, but a prototype(Like class).
+// **: Unless new is used to create an instance, ObjectA is not useful
 function ObjectA() {
     this.propA = 10,
     this.propB = "ABCD",
@@ -50,5 +56,25 @@ function ObjectA() {
         return this.propA + " " + this.propB
     }
 }
-const objectAVar = new ObjectA() // Here new creates an empty object like {}, and adds properties propA, propB and summary function to it.
-objectAVar.summary()
+
+// - Here new creates an empty object like {}, 
+// - and adds properties propA, propB and summary function to it.
+const objectAVar = new ObjectA() 
+const objectAVarSummary = objectAVar.summary()
+console.log(objectAVarSummary)
+
+// #1: Creating an object with Class keyword
+// **: this is similar to creating object with constructor function.
+// **: In fact internally this will create a constructor function.
+class ObjectB {
+    constructor() {
+        this.propX = "hello world",
+        this.propY = "Welcome to Classes",
+        this.summary = function () {
+            return this.propX + " " + this.propY;
+        };
+    }
+}
+
+const objectBObj = new ObjectB
+console.log(objectBObj.summary())
