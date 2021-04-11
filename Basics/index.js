@@ -78,3 +78,37 @@ class ObjectB {
 
 const objectBObj = new ObjectB
 console.log(objectBObj.summary())
+
+class MathMaster {
+    constructor() {
+        this.op1 = 10,
+        this.op2 = 30,
+        this.addOperands = function() {
+            return this.op1 + this.op2
+        }
+        this.printNumbersBetween = function(smallerNum, biggerNum) {
+            if (biggerNum <= smallerNum) {
+                if (biggerNum == smallerNum) {
+                    console.log('As both numbers equal, not printing numbers')
+                    return
+                }
+                // swap smallerNum and biggerNum
+                console.log('Smaller number was passed in place of bigger number')
+                const tempNum = biggerNum; biggerNum = smallerNum; smallerNum = tempNum
+            }
+            const actualDifference = biggerNum - smallerNum - 1
+
+            for (let index = 0; index < actualDifference; index++) {
+                console.log(smallerNum + index + 1)
+            }
+        }
+    }
+}
+
+const mathM = new MathMaster
+console.log(mathM.addOperands())
+mathM.printNumbersBetween(-5, 5)
+
+// Protoype of an Object
+console.log(MathMaster.prototype)
+console.log(ObjectB.prototype)
